@@ -1,7 +1,9 @@
 
 const generationBtn = document.getElementById('generation-btn')
+const emailList = document.querySelector('ul')
 
 generationBtn.addEventListener('click', function() {
+    emailList.innerHTML = ''
     generationEmail(10)
 })
 
@@ -13,12 +15,14 @@ function generationEmail(number){
         .then((res) => {
             const email = res.data.response
             console.log(email)
+            const emailListItem = myCreateElement('li', [] , email )
+            emailList.append(emailListItem)
         })
         .catch((err) => {
             console.log('ops qualcosa è andato storto', err)
             // qui abbiamo accesso all'errore che ha generato la chiamata
         }) 
-        myCreateElement('li',[],'email')
+    
     }
 }
 
